@@ -20,10 +20,11 @@ public class LoginServlet extends HttpServlet {
         final String MSG_LOGOUT = "You have successfully logged out";
         
         HttpSession session = request.getSession();
+
         String param = request.getParameter("logout");
         if (param != null) {
-            request.setAttribute("msgerror", MSG_LOGOUT);
-            session.invalidate();
+              request.setAttribute("msgerror", MSG_LOGOUT);
+              session.invalidate();             
         }
         getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
     }
@@ -56,10 +57,8 @@ public class LoginServlet extends HttpServlet {
         } else {
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
-                    
-            getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);           
+            
+            response.sendRedirect("home");
         }
-        
      }
-
 }
